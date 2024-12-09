@@ -1,30 +1,38 @@
-import { Avatar, Box, Image } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
-import { getData } from '../Context/UserContext'
-import axiosFetch from '../Utils/Axios'
-import {useNavigate} from 'react-router-dom'
+import { Avatar, Box } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axiosFetch from '../Utils/Axios';
 
 const Me = () => {
-const navigate = useNavigate()
-  const [ user, setUser ] = useState()
-  useEffect(()=>{
-    axiosFetch('user/me')
-    .then(res => setUser(res.data))
-    .catch(err => console.log(err))
-  },[])
-  return (
-    <Box className='flex flex-row gap-1 cursor-default justify-center items-center'>
-        <Avatar onClick={()=>{
-      navigate('/')
-    }
-        } src={user?.avatar} className='h-32 w-32' >
-            
-        </Avatar>
-        <Box className='text-xs'>
-            {user?.fullName}
-        </Box>
-    </Box>
-  )
-}
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
 
-export default Me
+  useEffect(() => {
+    axiosFetch('user/me')
+      .then((res) => setUser(res.data))
+      .catch((err) => console.error('Error fetching user data:', err));
+  }, []);
+
+  return (
+    <Box
+      className="flex flex-row gap-1 cursor-default justify-center items-center"
+      display="flex"
+      flexDirection="row"
+      gap="1"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Avatar
+        onClick={() => navigate('/')}
+        src={user?.avatar || '/default-avatar.png'}
+        size="2xl"
+        cursor="pointer"
+      />
+      <Box fontSize="xs" textAlign="center">
+        {user?.fullName || 'Loading...'}
+      </Box>
+    </Box>
+  );
+};
+
+export default Me;
