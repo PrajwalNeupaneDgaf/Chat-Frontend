@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axiosFetch from "../Utils/Axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getData } from "../Context/UserContext";
-import { Spinner } from "@chakra-ui/react";
+import { Button, Spinner } from "@chakra-ui/react";
 
 const RefreshHandler = ({ children ,trigger }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
