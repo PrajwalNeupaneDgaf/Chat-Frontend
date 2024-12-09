@@ -25,7 +25,7 @@ const Me = () => {
       <Avatar
         onClick={() => navigate('/')}
         src={user?.avatar || '/default-avatar.png'}
-        size="2xl"
+        size="md"
         cursor="pointer"
       />
       <Box fontSize="xs" textAlign="center">
