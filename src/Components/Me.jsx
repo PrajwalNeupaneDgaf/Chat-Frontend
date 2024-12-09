@@ -12,7 +12,7 @@ const Me = () => {
   },[])
   return (
     <Box className='flex flex-row gap-1 cursor-default justify-center items-center'>
-        <Avatar src={user?.avatar} className='h-32 w-32'>
+        <Avatar src={user?.avatar} className='h-32 w-32' >
             
         </Avatar>
         <Box className='text-xs'>

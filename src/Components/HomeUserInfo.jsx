@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getData } from '../Context/UserContext';
 
-const UserInfo = ({data}) => {
+const HomeUserInfo = ({data}) => {
 
     const navigate = useNavigate()
 
@@ -30,29 +30,29 @@ const UserInfo = ({data}) => {
             {data?.map((item) => (
                 <Box
                     onClick={()=>{
-                        navigate(`/messages/${item._id}`)
+                        navigate(`/messages/${item.user._id}`)
                     }}
                     className="bg-black rounded-lg w-80 cursor-pointer bg-opacity-25 py-3"
-                    key={item._id}
+                    key={item.user._id}
                     display="flex"
                     alignItems="center"
                     gap={4}
                     mb={4}
                 >
-                    <Avatar pos={'relative'} src={item.avatar} _before={{
+                    <Avatar pos={'relative'} src={item.user.avatar} _before={{
                         pos:"absolute",
                         content:'""',
                         height:'10px',
                         width:'10px',
                         borderRadius:'100%',
-                        background:`${onlineUser.includes(item._id)?'green':'gray'}`,
+                        background:`${onlineUser.includes(item.user._id)?'green':'gray'}`,
                         bottom:0,
                         right:0
                     }}/>
                     <Box>
-                        <Box fontWeight="bold">{item.fullName}</Box>
+                        <Box fontWeight="bold">{item.user.fullName}</Box>
                         <Box fontSize="sm" color="gray.500">
-                            @{item.userName}
+                           {item.latestMessage.content}
                         </Box>
                     </Box>
                 </Box>
@@ -61,4 +61,4 @@ const UserInfo = ({data}) => {
     );
 };
 
-export default UserInfo;
+export default HomeUserInfo;

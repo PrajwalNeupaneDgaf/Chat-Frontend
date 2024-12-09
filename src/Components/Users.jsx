@@ -5,9 +5,13 @@ import Me from './Me'
 import UserInfo from './UserInfo'
 import Logout from './Logout'
 import axiosFetch from '../Utils/Axios'
+import { getData } from '../Context/UserContext'
+import HomeUserInfo from './HomeUserInfo'
 
 const Users = () => {
   const [data, setdata] = useState([])
+
+
   useEffect(()=>{
     axiosFetch('message/getmychatlist')
     .then(res => {
@@ -30,7 +34,7 @@ const Users = () => {
             </Box>
         </Box>
         <Box>
-           <UserInfo  data = {data}/>
+           <HomeUserInfo  data = {data}/>
         </Box>
         <Box className='w-full px-5'>
            <Logout />
